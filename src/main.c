@@ -1,12 +1,13 @@
+#include <linked_list.h>
+#include <stack.h>
 #include <stdio.h>
 #include <stdint.h>
-#include "linked_lst.h"
 
 int main()
 {
 	Node *head = 0;
-
-	insertToLinkedList(&head, 1, 1);
+	List_t stack_data = 0;
+/*	insertToLinkedList(&head, 1, 1);
 	insertToLinkedList(&head, 2, 2);
 
 	printLinkedList(head);
@@ -36,6 +37,19 @@ int main()
 	}
 	reverseLinkedList(&head);
 	printf("Reverse string is as following\n");
-	printLinkedList(head);
+	printLinkedList(head);*/
+
+	stackPush(&head, 5);
+	stackPush(&head, 6);
+	printStack(head);
+	printf("Top of the stack is = %d\n",stackTop(head));
+	printf("Stack Size is = %d\n", stackGetSize(head));
+
+	if(stackPop(&head, &stack_data) == exit_with_sucsess)
+	{
+		printStack(head);
+		printf("Top of the stack is = %d\n",stackTop(head));
+	}
+
 	return 0;
 }

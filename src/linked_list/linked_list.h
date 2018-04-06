@@ -1,14 +1,8 @@
-#ifndef LINKED_LIST_LINKED_LST_H_
-#define LINKED_LIST_LINKED_LST_H_
+#ifndef LINKED_LIST_LINKED_LIST_H_
+#define LINKED_LIST_LINKED_LIST_H_
 
 #include "general.h"
-
-#define List_t int
-
-typedef struct{
-	List_t data;
-	struct Node *ptr;
-}Node;
+#include "nodes.h"
 
 void printLinkedList(Node *head);
 List_t getHeadValue(Node *head);
@@ -21,4 +15,4 @@ int sizeOfLinkedlist(Node *head);
 Ret_type_t reverseLinkedList(Node **head);
 
 
-#endif /* LINKED_LIST_LINKED_LST_H_ */
+#endif /* LINKED_LIST_LINKED_LIST_H_ */
