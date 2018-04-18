@@ -1,6 +1,9 @@
 #ifndef GENERAL_H_
 #define GENERAL_H_
 
+#include <stdio.h>
+#include "stdlib.h"
+
 typedef enum{
 	true= 0,
 	false,

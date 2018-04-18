@@ -2,12 +2,18 @@
 #include <stack.h>
 #include <stdio.h>
 #include <stdint.h>
+#include "queue.h"
+
+#define queue 1
+//#define stack 1
+//#define linkedlist 1
 
 int main()
 {
-	Node *head = 0;
-	List_t stack_data = 0;
-/*	insertToLinkedList(&head, 1, 1);
+	Node *head = 0, *tail = 0;
+
+#ifdef linkedlist
+	insertToLinkedList(&head, 1, 1);
 	insertToLinkedList(&head, 2, 2);
 
 	printLinkedList(head);
@@ -37,8 +43,9 @@ int main()
 	}
 	reverseLinkedList(&head);
 	printf("Reverse string is as following\n");
-	printLinkedList(head);*/
-
+	printLinkedList(head);
+#elif stack
+	List_t stack_data = 0;
 	stackPush(&head, 5);
 	stackPush(&head, 6);
 	printStack(head);
@@ -50,6 +57,20 @@ int main()
 		printStack(head);
 		printf("Top of the stack is = %d\n",stackTop(head));
 	}
+#elif queue
+	List_t queue_data = 0;
 
+	enQueue(&head, &tail, 5);
+	enQueue(&head, &tail, 7);
+	enQueue(&head, &tail, 10);
+
+	if(front(head, tail, &queue_data) == exit_with_sucsess)
+	{
+		printf("The data front is %d\n", queue_data);
+	}
+	printf("Size of the Queue is %d\n", getQueueSize(head, tail));
+	printQueue(head, tail);
+
+#endif
 	return 0;
 }
