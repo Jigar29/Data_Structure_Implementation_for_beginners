@@ -35,7 +35,7 @@ Ret_type_t printQueue(Node * head, Node *tail)
 	printf("***************************Queue***************************\n");
 	for(int i=0; i<getQueueSize(head, tail); i++)
 	{
-		printf("%d->", pointer->data);
+		printf("%d<-", pointer->data);
 		pointer = (Node *) pointer->ptr;
 	}
 	printf("\n");
@@ -57,35 +57,35 @@ Ret_type_t front(Node *head, Node *tail, List_t *front_data)
 
 Ret_type_t enQueue(Node **head, Node **tail, List_t data)
 {
-	Node *new_node = (Node *)malloc(sizeof(Node));
+	Node *new_node = (Node *) malloc(sizeof(Node));
 
 	if(isQueueEmpty(*head, *tail) == true)
 	{
-		*tail = (Node *) new_node;
+		*head = new_node;
+	}
+	else
+	{
+		(*tail)->ptr = (struct Node *)new_node;
 	}
 
-	new_node->ptr = (struct Node *)(*head);
-	*head =  new_node;
 	new_node->data = data;
-
+	new_node->ptr = 0;
+	*tail = new_node;
 	return exit_with_sucsess;
 }
 
 Ret_type_t deQueue(Node **head, Node **tail, List_t *rec_data)
 {
-	Node *pointer = *tail;
+	Node *pointer = *head;
 
 	if(isQueueEmpty(*head, *tail) == true)
 	{
-		printf("The list is empty. There is no data to dequeue");
-		return exit_with_abruption;
+		printf("The Queue is empty, There is nothing to dequeue\n");
+		return exit_with_failure;
 	}
 
-	*rec_data = pointer->data;
-
-	if(getQueueSize(*head, *tail) == 1)
-	{
-		*head = *tail = 0;
-	}
+	*rec_data = (*head)->data;
+	*head = (Node *)(*head)->ptr;
+	free(pointer);
 	return exit_with_sucsess;
 }

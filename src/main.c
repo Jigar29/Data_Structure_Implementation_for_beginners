@@ -63,7 +63,25 @@ int main()
 	enQueue(&head, &tail, 5);
 	enQueue(&head, &tail, 7);
 	enQueue(&head, &tail, 10);
+	enQueue(&head, &tail, 2);
 
+	if(front(head, tail, &queue_data) == exit_with_sucsess)
+	{
+		printf("The data front is %d\n", queue_data);
+	}
+	printf("Size of the Queue is %d\n", getQueueSize(head, tail));
+	printQueue(head, tail);
+
+	if(deQueue(&head, &tail, &queue_data)== exit_with_sucsess)
+	{
+		printf("Data Dequeued is = %d\n", queue_data);
+		printQueue(head, tail);
+	}
+	if(deQueue(&head, &tail, &queue_data)== exit_with_sucsess)
+	{
+		printf("Data Dequeued is = %d\n", queue_data);
+		printQueue(head, tail);
+	}
 	if(front(head, tail, &queue_data) == exit_with_sucsess)
 	{
 		printf("The data front is %d\n", queue_data);
