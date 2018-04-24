@@ -4,13 +4,14 @@
 #include <stdint.h>
 #include "queue.h"
 
-#define queue 1
+#define heap 1
+//#define queue 1
 //#define stack 1
 //#define linkedlist 1
 
 int main()
 {
-	Node *head = 0, *tail = 0;
+	List_node_t *head = 0, *tail = 0;
 
 #ifdef linkedlist
 	insertToLinkedList(&head, 1, 1);
@@ -88,6 +89,8 @@ int main()
 	}
 	printf("Size of the Queue is %d\n", getQueueSize(head, tail));
 	printQueue(head, tail);
+
+#elif heap
 
 #endif
 	return 0;

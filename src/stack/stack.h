@@ -5,9 +5,9 @@
 #include <nodes.h>
 #include <general.h>
 
-void printStack(Node* head);
-Ret_type_t stackPop(Node** head, List_t *data);
-Ret_type_t stackPush(Node** head, List_t data);
+void printStack(List_node_t* head);
+Ret_type_t stackPop(List_node_t** head, List_t *data);
+Ret_type_t stackPush(List_node_t** head, List_t data);
 List_t stackTop();
 List_t stackGetSize();
 

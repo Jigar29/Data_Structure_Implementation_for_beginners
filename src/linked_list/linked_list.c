@@ -1,9 +1,9 @@
 #include <linked_list.h>
 #include <stdio.h>
 
-void printLinkedList(Node *head)
+void printLinkedList(List_node_t *head)
 {
-	Node *pointer = (Node *)head;
+	List_node_t *pointer = (List_node_t *)head;
 
 	if(head == 0)
 	{
@@ -13,44 +13,44 @@ void printLinkedList(Node *head)
 	while(pointer != 0)
 	{
 		printf("%d", pointer->data);
-		pointer = (Node *)pointer->ptr;
+		pointer = (List_node_t *)pointer->ptr;
 	}
 	printf("\n");
 }
 
-List_t getHeadValue(Node *head)
+List_t getHeadValue(List_node_t *head)
 {
 	if(isEmpty(head) == true)
 	{
 		printf("The list is empty. Can't get the Head\n");
 		return -32768;
 	}
-	Node *pointer = (Node *)head;
+	List_node_t *pointer = (List_node_t *)head;
 	return pointer->data;
 }
 
-Ret_type_t isEmpty(Node *head)
+Ret_type_t isEmpty(List_node_t *head)
 {
 	return (head == 0)?true:false;
 }
 
-int sizeOfLinkedlist(Node *head)
+int sizeOfLinkedlist(List_node_t *head)
 {
-	Node *pointer = (Node *)head;
+	List_node_t *pointer = (List_node_t *)head;
 
 	int i =0;
 	while(pointer!=0)
 	{
-		pointer = (Node *)pointer->ptr;
+		pointer = (List_node_t *)pointer->ptr;
 		i++;
 	}
 	return i;
 }
 
-Ret_type_t appendToLinkedList(Node **head, List_t data)
+Ret_type_t appendToLinkedList(List_node_t **head, List_t data)
 {
-	Node *pointer = (Node *)(*head);
-	Node *new_node = (Node *)malloc(sizeof(Node));
+	List_node_t *pointer = (List_node_t *)(*head);
+	List_node_t *new_node = (List_node_t *)malloc(sizeof(List_node_t));
 
 	if((*head) == 0)
 	{
@@ -59,35 +59,35 @@ Ret_type_t appendToLinkedList(Node **head, List_t data)
 
 	while(pointer->ptr!= 0)
 	{
-		pointer = (Node *)pointer->ptr;
+		pointer = (List_node_t *)pointer->ptr;
 	}
 
-	pointer->ptr = (struct Node*) new_node;
+	pointer->ptr = (struct List_node_t*) new_node;
 	new_node->data = data;
 	new_node->ptr = 0;
 	return exit_with_sucsess;
 }
 
-Ret_type_t prependToLinkedList(Node **head, List_t data)
+Ret_type_t prependToLinkedList(List_node_t **head, List_t data)
 {
-	Node *pointer = (Node *) (*head);
-	Node *new_node = (Node *)malloc(sizeof(Node));
+	List_node_t *pointer = (List_node_t *) (*head);
+	List_node_t *new_node = (List_node_t *)malloc(sizeof(List_node_t));
 
 	if((*head) == 0)
 	{
 		return exit_with_failure;
 	}
 
-	(*head) = (Node *)new_node;
+	(*head) = (List_node_t *)new_node;
 	new_node->data = data;
-	new_node->ptr = (struct Node *)pointer;
+	new_node->ptr = (struct List_node_t *)pointer;
 	return exit_with_sucsess;
 }
 
-Ret_type_t insertToLinkedList(Node **head, int node_pos, List_t data)
+Ret_type_t insertToLinkedList(List_node_t **head, int node_pos, List_t data)
 {
-	Node *pointer = (Node *)(*head);
-	Node *new_node = (Node *)malloc(sizeof(Node));
+	List_node_t *pointer = (List_node_t *)(*head);
+	List_node_t *new_node = (List_node_t *)malloc(sizeof(List_node_t));
 
 	if(node_pos <= 0)
 		return exit_with_failure;
@@ -100,14 +100,14 @@ Ret_type_t insertToLinkedList(Node **head, int node_pos, List_t data)
 
 	for(int i=1; i<node_pos-1; i++)
 	{
-		pointer = (Node *) pointer->ptr;
+		pointer = (List_node_t *) pointer->ptr;
 	}
 
 	if(node_pos == 1)
 	{
 		if((*head) == 0)
 		{
-			(*head) = (Node *)new_node;
+			(*head) = (List_node_t *)new_node;
 			new_node->ptr = 0;
 			new_node->data = data;
 		}
@@ -120,16 +120,16 @@ Ret_type_t insertToLinkedList(Node **head, int node_pos, List_t data)
 	{
 		new_node->ptr = pointer->ptr;
 		new_node->data = data;
-		pointer->ptr = (struct Node *)new_node;
+		pointer->ptr = (struct List_node_t *)new_node;
 	}
 
 	return exit_with_sucsess;
 }
 
-Ret_type_t delete(Node ** head, int node_pos)
+Ret_type_t delete(List_node_t ** head, int node_pos)
 {
-	Node *pointer = (Node *)(*head);
-	Node *node_to_be_deleted = (Node *)0;
+	List_node_t *pointer = (List_node_t *)(*head);
+	List_node_t *node_to_be_deleted = (List_node_t *)0;
 
 	if(isEmpty(*head) == true)
 	{
@@ -144,25 +144,25 @@ Ret_type_t delete(Node ** head, int node_pos)
 
 	if(node_pos == 1)
 	{
-		(*head) = (Node *)pointer->ptr;
+		(*head) = (List_node_t *)pointer->ptr;
 		free(pointer);
 	}
 	else
 	{
 		for(int i=1; i<node_pos-1; i++)
 		{
-			pointer = (Node *)pointer->ptr;
+			pointer = (List_node_t *)pointer->ptr;
 		}
-		node_to_be_deleted  = (Node *)pointer->ptr;
+		node_to_be_deleted  = (List_node_t *)pointer->ptr;
 		pointer->ptr = node_to_be_deleted->ptr;
 		free(node_to_be_deleted);
 	}
 	return exit_with_sucsess;
 }
 
-Ret_type_t reverseLinkedList(Node **head)
+Ret_type_t reverseLinkedList(List_node_t **head)
 {
-	Node *current_node = (Node *) (*head), *previous_node = 0, *next_node = 0;
+	List_node_t *current_node = (List_node_t *) (*head), *previous_node = 0, *next_node = 0;
 
 	if((*head) == 0)
 	{
@@ -172,12 +172,12 @@ Ret_type_t reverseLinkedList(Node **head)
 
 	while(current_node != 0)
 	{
-		next_node = (Node *)current_node->ptr;
-		current_node->ptr = (struct Node *) previous_node;
+		next_node = (List_node_t *)current_node->ptr;
+		current_node->ptr = (struct List_node_t *) previous_node;
 		previous_node = current_node;
 		current_node = next_node;
 	}
-	(*head) = (Node *) previous_node;
+	(*head) = (List_node_t *) previous_node;
 
 	return exit_with_sucsess;
 }

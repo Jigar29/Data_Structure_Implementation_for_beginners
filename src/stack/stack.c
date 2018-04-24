@@ -2,42 +2,42 @@
 #include "stdlib.h"
 #include <stdio.h>
 
-List_t stackTop(Node* head)
+List_t stackTop(List_node_t* head)
 {
 	return head->data;
 }
 
-int stackGetSize(Node* head)
+int stackGetSize(List_node_t* head)
 {
-	Node* pointer = (Node *)head;
+	List_node_t* pointer = (List_node_t *)head;
 	int stack_size = 0;
 
 	while(pointer != 0)
 	{
-		pointer = (Node *)pointer->ptr;
+		pointer = (List_node_t *)pointer->ptr;
 		stack_size++;
 	}
 	return stack_size;
 }
 
-Ret_type_t isStackEmpty(Node* head)
+Ret_type_t isStackEmpty(List_node_t* head)
 {
 	return (stackGetSize(head) == 0)?true:false;
 }
 
-void printStack(Node* head)
+void printStack(List_node_t* head)
 {
-	Node* pointer = (Node *)head;
+	List_node_t* pointer = (List_node_t *)head;
 	for(int i=0;i<stackGetSize(head);i++)
 	{
 		printf("%d\n", pointer->data);
-		pointer = (Node *)pointer->ptr;
+		pointer = (List_node_t *)pointer->ptr;
 	}
 }
 
-Ret_type_t stackPop(Node** head, List_t* data)
+Ret_type_t stackPop(List_node_t** head, List_t* data)
 {
-	Node *pointer = (Node *) *head;
+	List_node_t *pointer = (List_node_t *) *head;
 
 	if(isStackEmpty(*head) == true)
 	{
@@ -46,17 +46,17 @@ Ret_type_t stackPop(Node** head, List_t* data)
 	}
 
 	*data = pointer->data;
-	*head = (Node *)pointer->ptr;
+	*head = (List_node_t *)pointer->ptr;
 
 	return exit_with_sucsess;
 }
 
-Ret_type_t stackPush(Node** head, List_t data)
+Ret_type_t stackPush(List_node_t** head, List_t data)
 {
-	Node* new_node = (Node *)malloc(sizeof(Node));
+	List_node_t* new_node = (List_node_t *)malloc(sizeof(List_node_t));
 
 	new_node->data = data;
-	new_node->ptr = (struct Node*)(*head);
+	new_node->ptr = (struct List_node_t*)(*head);
 
 	*head = new_node;
 

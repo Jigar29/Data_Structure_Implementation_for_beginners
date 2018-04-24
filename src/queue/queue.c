@@ -1,13 +1,13 @@
 #include "queue.h"
 
-Ret_type_t isQueueEmpty(Node * head, Node* tail)
+Ret_type_t isQueueEmpty(List_node_t * head, List_node_t* tail)
 {
 	return ((head == 0)&&(tail == 0))? true: false;
 }
 
-int getQueueSize(Node * head, Node *tail)
+int getQueueSize(List_node_t * head, List_node_t *tail)
 {
-	Node *pointer = head;
+	List_node_t *pointer = head;
 	int size = 0;
 
 	if(isQueueEmpty(head, tail) == false)
@@ -15,7 +15,7 @@ int getQueueSize(Node * head, Node *tail)
 		size = 1;
 		while(pointer != tail)
 		{
-			pointer = (Node *) pointer->ptr;
+			pointer = (List_node_t *) pointer->ptr;
 			size+=1;
 		}
 	}
@@ -23,9 +23,9 @@ int getQueueSize(Node * head, Node *tail)
 	return size;
 }
 
-Ret_type_t printQueue(Node * head, Node *tail)
+Ret_type_t printQueue(List_node_t * head, List_node_t *tail)
 {
-	Node *pointer = head;
+	List_node_t *pointer = head;
 
 	if(isQueueEmpty(head, tail) == true)
 	{
@@ -36,16 +36,16 @@ Ret_type_t printQueue(Node * head, Node *tail)
 	for(int i=0; i<getQueueSize(head, tail); i++)
 	{
 		printf("%d<-", pointer->data);
-		pointer = (Node *) pointer->ptr;
+		pointer = (List_node_t *) pointer->ptr;
 	}
 	printf("\n");
 	printf("***********************************************************\n");
 	return exit_with_sucsess;
 }
 
-Ret_type_t front(Node *head, Node *tail, List_t *front_data)
+Ret_type_t front(List_node_t *head, List_node_t *tail, List_t *front_data)
 {
-	Node *pointer = head;
+	List_node_t *pointer = head;
 	if(isQueueEmpty(head, tail) == false)
 	{
 		*front_data = pointer->data;
@@ -55,9 +55,9 @@ Ret_type_t front(Node *head, Node *tail, List_t *front_data)
 	return exit_with_failure;
 }
 
-Ret_type_t enQueue(Node **head, Node **tail, List_t data)
+Ret_type_t enQueue(List_node_t **head, List_node_t **tail, List_t data)
 {
-	Node *new_node = (Node *) malloc(sizeof(Node));
+	List_node_t *new_node = (List_node_t *) malloc(sizeof(List_node_t));
 
 	if(isQueueEmpty(*head, *tail) == true)
 	{
@@ -65,7 +65,7 @@ Ret_type_t enQueue(Node **head, Node **tail, List_t data)
 	}
 	else
 	{
-		(*tail)->ptr = (struct Node *)new_node;
+		(*tail)->ptr = (struct List_node_t *)new_node;
 	}
 
 	new_node->data = data;
@@ -74,9 +74,9 @@ Ret_type_t enQueue(Node **head, Node **tail, List_t data)
 	return exit_with_sucsess;
 }
 
-Ret_type_t deQueue(Node **head, Node **tail, List_t *rec_data)
+Ret_type_t deQueue(List_node_t **head, List_node_t **tail, List_t *rec_data)
 {
-	Node *pointer = *head;
+	List_node_t *pointer = *head;
 
 	if(isQueueEmpty(*head, *tail) == true)
 	{
@@ -85,7 +85,7 @@ Ret_type_t deQueue(Node **head, Node **tail, List_t *rec_data)
 	}
 
 	*rec_data = (*head)->data;
-	*head = (Node *)(*head)->ptr;
+	*head = (List_node_t *)(*head)->ptr;
 	free(pointer);
 	return exit_with_sucsess;
 }

@@ -4,15 +4,15 @@
 #include "general.h"
 #include "nodes.h"
 
-void printLinkedList(Node *head);
-List_t getHeadValue(Node *head);
-Ret_type_t isEmpty(Node *head);
-Ret_type_t appendToLinkedList(Node **head, List_t data);
-Ret_type_t prependToLinkedList(Node **head, List_t data);
-Ret_type_t insertToLinkedList(Node **head, int node_pos, List_t data);
-Ret_type_t delete(Node ** head, int node_pos);
-int sizeOfLinkedlist(Node *head);
-Ret_type_t reverseLinkedList(Node **head);
+void printLinkedList(List_node_t *head);
+List_t getHeadValue(List_node_t *head);
+Ret_type_t isEmpty(List_node_t *head);
+Ret_type_t appendToLinkedList(List_node_t **head, List_t data);
+Ret_type_t prependToLinkedList(List_node_t **head, List_t data);
+Ret_type_t insertToLinkedList(List_node_t **head, int node_pos, List_t data);
+Ret_type_t delete(List_node_t ** head, int node_pos);
+int sizeOfLinkedlist(List_node_t *head);
+Ret_type_t reverseLinkedList(List_node_t **head);
 
 
 #endif /* LINKED_LIST_LINKED_LIST_H_ */
