@@ -10,8 +10,8 @@ typedef struct{
 
 typedef struct{
 	List_t data;
-	struct Tree_node_t *right;
-	struct Tree_node_t *left;
+	struct Tree_node_t *right_node;
+	struct Tree_node_t *left_node;
 }Tree_node_t;
 
 #endif /* NODES_H_ */
