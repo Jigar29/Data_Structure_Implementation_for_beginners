@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "stdlib.h"
 
+#define NULL 0
+
 typedef enum{
 	true= 0,
 	false,

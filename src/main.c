@@ -3,8 +3,10 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "queue.h"
+#include "binary_tree.h"
 
-#define heap 1
+#define binary_tree 1
+//#define heap 1
 //#define queue 1
 //#define stack 1
 //#define linkedlist 1
@@ -90,7 +92,19 @@ int main()
 	printf("Size of the Queue is %d\n", getQueueSize(head, tail));
 	printQueue(head, tail);
 
-#elif heap
+#elif binary_tree
+	Tree_node_t* root_node = (Tree_node_t *) malloc(sizeof(Tree_node_t));
+	root_node->data = 0;
+	root_node->left_node = NULL;
+	root_node->right_node = NULL;
+
+	insertToTree((Tree_node_t **)&root_node, 4);
+	insertToTree((Tree_node_t **)&root_node, 5);
+
+	root_node = (Tree_node_t *) root_node->right_node;
+	printf("%d\n", root_node->data);
+	root_node = (Tree_node_t *) root_node->right_node;
+		printf("%d\n", root_node->data);
 
 #endif
 	return 0;
