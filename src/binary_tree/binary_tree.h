@@ -4,7 +4,7 @@
 #include "nodes.h"
 #include "general.h"
 
-void printTree(Tree_node_t *root);
+void printTree(Tree_node_t *root, int space);
 Ret_type_t isTreeBalanced(Tree_node_t *root);
 int lenghtOfTree(Tree_node_t *root);
 Ret_type_t insertToTree(Tree_node_t **root, Tree_List_t data);

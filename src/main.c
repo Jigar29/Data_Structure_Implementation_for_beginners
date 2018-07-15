@@ -13,9 +13,8 @@
 
 int main()
 {
-	List_node_t *head = 0, *tail = 0;
-
 #ifdef linkedlist
+	List_node_t *head = 0, *tail = 0;
 	insertToLinkedList(&head, 1, 1);
 	insertToLinkedList(&head, 2, 2);
 
@@ -48,6 +47,7 @@ int main()
 	printf("Reverse string is as following\n");
 	printLinkedList(head);
 #elif stack
+	List_node_t *head = 0, *tail = 0;
 	List_t stack_data = 0;
 	stackPush(&head, 5);
 	stackPush(&head, 6);
@@ -61,6 +61,7 @@ int main()
 		printf("Top of the stack is = %d\n",stackTop(head));
 	}
 #elif queue
+	List_node_t *head = 0, *tail = 0;
 	List_t queue_data = 0;
 
 	enQueue(&head, &tail, 5);
@@ -93,18 +94,23 @@ int main()
 	printQueue(head, tail);
 
 #elif binary_tree
-	Tree_node_t* root_node = (Tree_node_t *) malloc(sizeof(Tree_node_t));
-	root_node->data = 0;
-	root_node->left_node = NULL;
-	root_node->right_node = NULL;
+	Tree_node_t* root_node = NULL;
 
-	insertToTree((Tree_node_t **)&root_node, 4);
+	insertToTree((Tree_node_t **)&root_node, 7);
 	insertToTree((Tree_node_t **)&root_node, 5);
+	insertToTree((Tree_node_t **)&root_node, 9);
+	insertToTree((Tree_node_t **)&root_node, 10);
+	insertToTree((Tree_node_t **)&root_node, 2);
+	insertToTree((Tree_node_t **)&root_node, 1);
+	insertToTree((Tree_node_t **)&root_node, 8);
+//	insertToTree((Tree_node_t **)&root_node, 10);
+//	insertToTree((Tree_node_t **)&root_node, 2);
+//	insertToTree((Tree_node_t **)&root_node, 1);
+//	insertToTree((Tree_node_t **)&root_node, 8);
 
-	root_node = (Tree_node_t *) root_node->right_node;
-	printf("%d\n", root_node->data);
-	root_node = (Tree_node_t *) root_node->right_node;
-		printf("%d\n", root_node->data);
+	{
+		printf("The tree is Empty, please fill in the data first\n");
+	}
 
 #endif
 	return 0;
