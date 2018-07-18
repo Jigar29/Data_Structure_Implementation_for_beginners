@@ -100,18 +100,38 @@ int main()
 	insertToTree((Tree_node_t **)&root_node, 5);
 	insertToTree((Tree_node_t **)&root_node, 9);
 	insertToTree((Tree_node_t **)&root_node, 10);
-	insertToTree((Tree_node_t **)&root_node, 2);
+	insertToTree((Tree_node_t **)&root_node, 4);
 	insertToTree((Tree_node_t **)&root_node, 1);
 	insertToTree((Tree_node_t **)&root_node, 8);
-//	insertToTree((Tree_node_t **)&root_node, 10);
-//	insertToTree((Tree_node_t **)&root_node, 2);
-//	insertToTree((Tree_node_t **)&root_node, 1);
-//	insertToTree((Tree_node_t **)&root_node, 8);
+	insertToTree((Tree_node_t **)&root_node, 0);
+	insertToTree((Tree_node_t **)&root_node, 2);
+	insertToTree((Tree_node_t **)&root_node, -1);
+	insertToTree((Tree_node_t **)&root_node, 6);
 
+	//printf("The minimum number in a tree is %d\n", findMinElement(root_node));
+	if(searchInTree(root_node, -1) == true)
+	{
+		printf("The element exists in the given tree\n");
+	}
+	else
+	{
+		printf("The element does not exists in the given tree\n");
+	}
+
+	if(isTreeEmpty(root_node) == true)
 	{
 		printf("The tree is Empty, please fill in the data first\n");
 	}
+	printf("Min No is %d\n", findMinElement(root_node));
+	printf("Max No is %d\n", findMaxElement(root_node));
 
+	printTree(root_node, 0);
+	printf("In-Order Traversal List\n");
+	inOrderTraversal(root_node);
+	printf("\nPre-Order Traversal List\n");
+	preOrderTraversal(root_node);
+	printf("\nPost-Order Traversal List\n");
+	postOrderTraversal(root_node);
 #endif
 	return 0;
 }
