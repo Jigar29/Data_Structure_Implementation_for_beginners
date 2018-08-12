@@ -77,11 +77,7 @@ Ret_type_t pushElementInQueue(Circular_queue_t *queue, Queue_t data)
 		queue->front_index_num = queue->rear_index_num = 0;
 	}
 
-	if(queue->rear_index_num == queue->queue_max_size)
-	{
-		queue->rear_index_num =0;
-	}
-	queue->araay_adr[queue->rear_index_num] = data;
+	queue->araay_adr[queue->rear_index_num % queue->queue_max_size] = data;
 	queue->rear_index_num = (queue->rear_index_num +1) % (queue->queue_max_size + 1);
 	return exit_with_sucsess;
 }
@@ -95,12 +91,7 @@ Ret_type_t popElementInQueue(Circular_queue_t *queue, Queue_t *data)
 		return exit_with_failure;
 	}
 
-	if(queue->front_index_num == queue->queue_max_size)
-	{
-		queue->front_index_num = 0;
-	}
-
-	*data = queue->araay_adr[queue->front_index_num];
+	*data = queue->araay_adr[queue->front_index_num % queue->queue_max_size];
 	queue->front_index_num = (queue->front_index_num + 1) % (queue->queue_max_size+1);
 	return exit_with_sucsess;
 }

@@ -168,7 +168,6 @@ int main()
 	pushElementInQueue(&queue, 7);
 	popElementInQueue(&queue, &data);
 	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
 	printcircularQueue(&queue);
 
 #endif
