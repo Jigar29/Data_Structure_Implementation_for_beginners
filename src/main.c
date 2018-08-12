@@ -1,17 +1,19 @@
-#include <linked_list.h>
-#include <stack.h>
 #include <stdio.h>
 #include <stdint.h>
+#include "linked_list.h"
+#include "stack.h"
 #include "queue.h"
 #include "binary_tree.h"
 #include "circular_queue.h"
+#include "heap.h"
+#include "nodes.h"
 
 //#define binary_tree 1
-//#define heap 1
+#define heap 1
 //#define queue 1
 //#define stack 1
 //#define linkedlist 1
-#define circular_queue 1
+//#define circular_queue 1
 
 int main()
 {
@@ -170,6 +172,19 @@ int main()
 	//printcircularQueue(&queue);
 	printf("\nLast element is = %d", getLastElement(&queue));
 
+#elif heap
+	Heap_t array[10] = {-1};
+	Heap_node_t heap_struct = {10, -1, &array[0]};
+
+	insertToHeap(&heap_struct, 6);
+	insertToHeap(&heap_struct, 7);
+	insertToHeap(&heap_struct, 8);
+	insertToHeap(&heap_struct, 9);
+	insertToHeap(&heap_struct, 10);
+	insertToHeap(&heap_struct, 5);
+	printHeap(&heap_struct);
+	deleteFromHeap(&heap_struct);
+	printHeap(&heap_struct);
 #endif
 	return 0;
 }

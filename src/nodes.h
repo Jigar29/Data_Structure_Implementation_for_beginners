@@ -4,6 +4,7 @@
 #define List_t int
 #define Tree_List_t int
 #define Queue_t int
+#define Heap_t int
 
 typedef struct{
 	List_t data;
@@ -23,4 +24,9 @@ typedef struct{
 	Queue_t *araay_adr;
 }Circular_queue_t;
 
+typedef struct{
+	Heap_t heap_max_size;
+	Heap_t current_pos;
+	Heap_t *araay_adr;
+}Heap_node_t;
 #endif /* NODES_H_ */
