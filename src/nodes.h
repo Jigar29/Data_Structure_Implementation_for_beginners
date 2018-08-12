@@ -3,6 +3,7 @@
 
 #define List_t int
 #define Tree_List_t int
+#define Queue_t int
 
 typedef struct{
 	List_t data;
@@ -14,5 +15,12 @@ typedef struct{
 	struct Tree_node_t *right_node;
 	struct Tree_node_t *left_node;
 }Tree_node_t;
+
+typedef struct{
+	Queue_t front_index_num;
+	Queue_t rear_index_num;
+	Queue_t queue_max_size;
+	Queue_t *araay_adr;
+}Circular_queue_t;
 
 #endif /* NODES_H_ */

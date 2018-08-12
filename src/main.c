@@ -4,12 +4,14 @@
 #include <stdint.h>
 #include "queue.h"
 #include "binary_tree.h"
+#include "circular_queue.h"
 
-#define binary_tree 1
+//#define binary_tree 1
 //#define heap 1
 //#define queue 1
 //#define stack 1
 //#define linkedlist 1
+#define circular_queue 1
 
 int main()
 {
@@ -132,6 +134,43 @@ int main()
 	preOrderTraversal(root_node);
 	printf("\nPost-Order Traversal List\n");
 	postOrderTraversal(root_node);
+
+	#elif circular_queue
+	Queue_t array[10];
+	Circular_queue_t queue;
+	int data = 0;
+	queue.araay_adr = (Queue_t *)&array[0];
+	queue.front_index_num = queue.rear_index_num = -1;
+	queue.queue_max_size = 10;
+
+	pushElementInQueue(&queue, 5);
+	pushElementInQueue(&queue, 1);
+	pushElementInQueue(&queue, 7);
+	pushElementInQueue(&queue, 1);
+	pushElementInQueue(&queue, 7);
+	pushElementInQueue(&queue, 1);
+	pushElementInQueue(&queue, 7);
+	pushElementInQueue(&queue, 1);
+	pushElementInQueue(&queue, 7);
+	pushElementInQueue(&queue, 1);
+
+	//printcircularQueue(&queue);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	pushElementInQueue(&queue, 7);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	pushElementInQueue(&queue, 7);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	printcircularQueue(&queue);
+
 #endif
 	return 0;
 }
