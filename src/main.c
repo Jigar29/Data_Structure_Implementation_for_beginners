@@ -154,21 +154,21 @@ int main()
 	pushElementInQueue(&queue, 7);
 	pushElementInQueue(&queue, 1);
 
-	//printcircularQueue(&queue);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	pushElementInQueue(&queue, 7);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	pushElementInQueue(&queue, 7);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
 	printcircularQueue(&queue);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	pushElementInQueue(&queue, 4);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+	popElementInQueue(&queue, &data);
+
+	//printcircularQueue(&queue);
+	printf("\nLast element is = %d", getLastElement(&queue));
 
 #endif
 	return 0;
