@@ -6,6 +6,7 @@
 #define Queue_t int
 #define Heap_t int
 #define Priority_queue_t int
+#define Graph_node_t int
 
 typedef struct{
 	List_t data;
@@ -41,5 +42,15 @@ typedef struct{
 	Priority_queue_t current_pos;
 	Priority_queue_data_t *data;
 }Priority_queue_node_t;
+
+typedef struct{
+	Graph_node_t edge_no;
+	struct Edge_node_t *next;
+}Edge_node_t;
+
+typedef struct{
+	Edge_node_t *pointer_to_edges;
+	struct Vertice_list_t *next;
+}Vertice_list_t;
 
 #endif /* NODES_H_ */

@@ -8,6 +8,7 @@
 #include "heap.h"
 #include "nodes.h"
 #include "priority_queue.h"
+#include "graph.h"
 
 //#define binary_tree 1
 //#define heap 1
@@ -15,7 +16,8 @@
 //#define stack 1
 //#define linkedlist 1
 //#define circular_queue 1
-#define priority_queue 1
+//#define priority_queue 1
+#define graph 1
 
 int main()
 {
@@ -198,6 +200,33 @@ int main()
 
 	deleteFromPriorityQueue(&pq);
 	printPriorityQueue(&pq);
+#elif graph
+	Vertice_list_t *vertices_head = NULL;
+
+	addVerticeToGraph(&vertices_head);
+	addVerticeToGraph(&vertices_head);
+	addVerticeToGraph(&vertices_head);
+
+	addEdgeToVertice(getEdgeHeadFromVertice(vertices_head, 1), 2);
+	addEdgeToVertice(getEdgeHeadFromVertice(vertices_head, 1), 3);
+	addEdgeToVertice(getEdgeHeadFromVertice(vertices_head, 2), 3);
+
+	printf("Neighbours are\n");
+	getNeibour(vertices_head, 2);
+	printf("\n");
+	printVertices(vertices_head);
+	printf("\n");
+	printEdges(*getEdgeHeadFromVertice(vertices_head, 2));
+	printf("\n");
+	deleteEdgeFromVertice(getEdgeHeadFromVertice(vertices_head, 1), 2);
+	printEdges(*getEdgeHeadFromVertice(vertices_head, 1));
+	printf("\n");
+	deleteEdgeFromVertice(getEdgeHeadFromVertice(vertices_head, 2), 1);
+	printEdges(*getEdgeHeadFromVertice(vertices_head, 2));
+	printf("\n");
+	deleteVerticeFromGraph(&vertices_head, 1);
+	printVertices(vertices_head);
+
 #endif
 	return 0;
 }
