@@ -5,6 +5,7 @@
 #define Tree_List_t int
 #define Queue_t int
 #define Heap_t int
+#define Priority_queue_t int
 
 typedef struct{
 	List_t data;
@@ -29,4 +30,16 @@ typedef struct{
 	Heap_t current_pos;
 	Heap_t *araay_adr;
 }Heap_node_t;
+
+typedef struct{
+	Priority_queue_t value;
+	Priority_queue_t priority;
+}Priority_queue_data_t;
+
+typedef struct{
+	Priority_queue_t priority_queue_max_size;
+	Priority_queue_t current_pos;
+	Priority_queue_data_t *data;
+}Priority_queue_node_t;
+
 #endif /* NODES_H_ */
