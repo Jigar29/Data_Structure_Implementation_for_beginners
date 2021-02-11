@@ -22,6 +22,7 @@ Queue_t getLastElement(Circular_queue_t *queue)
 	return queue->araay_adr[queue->rear_index_num];
 }
 
+
 void printcircularQueue(Circular_queue_t *queue)
 {
 	Queue_t queue_size= getCircularQueueSize(queue);
