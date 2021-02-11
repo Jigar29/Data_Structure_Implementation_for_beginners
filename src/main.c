@@ -15,12 +15,11 @@
 //#define queue 1
 //#define stack 1
 //#define linkedlist 1
-//#define circular_queue 1
+#define circular_queue 1
 //#define priority_queue 1
-#define graph 1
+//#define graph 1
 
-int main()
-{
+int main() {
 #ifdef linkedlist
 	List_node_t *head = 0, *tail = 0;
 	insertToLinkedList(&head, 1, 1);
@@ -142,23 +141,19 @@ int main()
 	postOrderTraversal(root_node);
 
 	#elif circular_queue
-	Queue_t array[10];
-	Circular_queue_t queue;
-	int data = 0;
-	queue.araay_adr = (Queue_t *)&array[0];
-	queue.front_index_num = queue.rear_index_num = -1;
-	queue.queue_max_size = 10;
+	Queue_t array[5];
+	int data;
+	Circular_queue_t queue = { .queue_max_size = 5 };
+	queue.array_adr = (Queue_t*) &array[0];
+	queue.front_idx = -1;
+	queue.size = 0;
 
+	pushElementInQueue(&queue, 1);
+	pushElementInQueue(&queue, 2);
+	pushElementInQueue(&queue, 3);
+	pushElementInQueue(&queue, 4);
 	pushElementInQueue(&queue, 5);
-	pushElementInQueue(&queue, 1);
-	pushElementInQueue(&queue, 7);
-	pushElementInQueue(&queue, 1);
-	pushElementInQueue(&queue, 7);
-	pushElementInQueue(&queue, 1);
-	pushElementInQueue(&queue, 7);
-	pushElementInQueue(&queue, 1);
-	pushElementInQueue(&queue, 7);
-	pushElementInQueue(&queue, 1);
+	pushElementInQueue(&queue, 6);
 
 	printcircularQueue(&queue);
 	popElementInQueue(&queue, &data);
@@ -166,15 +161,10 @@ int main()
 	popElementInQueue(&queue, &data);
 	popElementInQueue(&queue, &data);
 	pushElementInQueue(&queue, 4);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
-	popElementInQueue(&queue, &data);
 
-	//printcircularQueue(&queue);
+	printcircularQueue(&queue);
 	printf("\nLast element is = %d", getLastElement(&queue));
+	printf("\nFirst element is = %d", getFrontElement(&queue));
 
 #elif heap
 	Heap_t array[10] = {-1};

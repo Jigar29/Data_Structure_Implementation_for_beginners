@@ -20,16 +20,16 @@ typedef struct{
 }Tree_node_t;
 
 typedef struct{
-	Queue_t front_index_num;
-	Queue_t rear_index_num;
-	Queue_t queue_max_size;
-	Queue_t *araay_adr;
+	Queue_t size;
+	Queue_t front_idx;
+	const Queue_t queue_max_size;
+	Queue_t *array_adr;
 }Circular_queue_t;
 
 typedef struct{
 	Heap_t heap_max_size;
 	Heap_t current_pos;
-	Heap_t *araay_adr;
+	Heap_t *array_adr;
 }Heap_node_t;
 
 typedef struct{

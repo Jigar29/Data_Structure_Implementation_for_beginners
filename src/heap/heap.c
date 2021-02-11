@@ -13,7 +13,7 @@ void printHeap(Heap_node_t *heap)
 
 	for(int i=0; i<heap_size;i++)
 	{
-		printf("%d, ", heap->araay_adr[i]);
+		printf("%d, ", heap->array_adr[i]);
 	}
 	printf("\n");
 }
@@ -46,7 +46,7 @@ Heap_t getMinNum(Heap_node_t *heap)
 		return -65556;
 	}
 
-	return heap->araay_adr[0];
+	return heap->array_adr[0];
 }
 
 Ret_type_t insertToHeap(Heap_node_t *heap, Heap_t data)
@@ -56,7 +56,7 @@ Ret_type_t insertToHeap(Heap_node_t *heap, Heap_t data)
 
 	//Adding value to the last of the element
 	heap->current_pos += 1;
-	heap->araay_adr[heap->current_pos] = data;
+	heap->array_adr[heap->current_pos] = data;
 
 	int i=heap->current_pos;
 	Heap_t temp = 0, temp_addr = 0;
@@ -65,22 +65,22 @@ Ret_type_t insertToHeap(Heap_node_t *heap, Heap_t data)
 		if(i %2 == 0)
 		{
 			temp_addr = (int) ((i -2)/2);
-			if(heap->araay_adr[temp_addr] > heap->araay_adr[i])
+			if(heap->array_adr[temp_addr] > heap->array_adr[i])
 			{
-				temp = heap->araay_adr[temp_addr];
-				heap->araay_adr[temp_addr] = heap->araay_adr[i];
-				heap->araay_adr[i] = temp;
+				temp = heap->array_adr[temp_addr];
+				heap->array_adr[temp_addr] = heap->array_adr[i];
+				heap->array_adr[i] = temp;
 			}
 			i = temp_addr;
 		}
 		else
 		{
 			temp_addr = (i -1)/2;
-			if(heap->araay_adr[temp_addr] > heap->araay_adr[i])
+			if(heap->array_adr[temp_addr] > heap->array_adr[i])
 			{
-				temp = heap->araay_adr[temp_addr];
-				heap->araay_adr[temp_addr] = heap->araay_adr[i];
-				heap->araay_adr[i] = temp;
+				temp = heap->array_adr[temp_addr];
+				heap->array_adr[temp_addr] = heap->array_adr[i];
+				heap->array_adr[i] = temp;
 			}
 			i = temp_addr;
 		}
@@ -96,7 +96,7 @@ Ret_type_t deleteFromHeap(Heap_node_t *heap)
 		return exit_with_failure;
 	}
 
-	heap->araay_adr[0] = heap->araay_adr[heap->current_pos];
+	heap->array_adr[0] = heap->array_adr[heap->current_pos];
 	heap->current_pos -=1;
 
 	int i=0;
@@ -106,34 +106,34 @@ Ret_type_t deleteFromHeap(Heap_node_t *heap)
 		if((2*i + 2) > heap->current_pos)
 		{
 			temp_addr = 2*i + 1;
-			if(heap->araay_adr[temp_addr] < heap->araay_adr[i])
+			if(heap->array_adr[temp_addr] < heap->array_adr[i])
 			{
-				temp = heap->araay_adr[temp_addr];
-				heap->araay_adr[temp_addr] = heap->araay_adr[i];
-				heap->araay_adr[i] = temp;
+				temp = heap->array_adr[temp_addr];
+				heap->array_adr[temp_addr] = heap->array_adr[i];
+				heap->array_adr[i] = temp;
 			}
 			i = temp_addr;
 		}
 		else
 		{
 			temp_addr = 2*i + 1;
-			if(heap->araay_adr[temp_addr] > heap->araay_adr[temp_addr+1])
+			if(heap->array_adr[temp_addr] > heap->array_adr[temp_addr+1])
 			{
-				if(heap->araay_adr[temp_addr +1] < heap->araay_adr[i])
+				if(heap->array_adr[temp_addr +1] < heap->array_adr[i])
 				{
-					temp = heap->araay_adr[temp_addr+1];
-					heap->araay_adr[temp_addr+1] = heap->araay_adr[i];
-					heap->araay_adr[i] = temp;
+					temp = heap->array_adr[temp_addr+1];
+					heap->array_adr[temp_addr+1] = heap->array_adr[i];
+					heap->array_adr[i] = temp;
 				}
 				i = temp_addr+1;
 			}
 			else
 			{
-				if(heap->araay_adr[temp_addr] < heap->araay_adr[i])
+				if(heap->array_adr[temp_addr] < heap->array_adr[i])
 				{
-					temp = heap->araay_adr[temp_addr];
-					heap->araay_adr[temp_addr] = heap->araay_adr[i];
-					heap->araay_adr[i] = temp;
+					temp = heap->array_adr[temp_addr];
+					heap->array_adr[temp_addr] = heap->array_adr[i];
+					heap->array_adr[i] = temp;
 				}
 				i =temp_addr;
 			}
