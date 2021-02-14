@@ -8,11 +8,11 @@
 #include "heap.h"
 
 /***************Formulas*******************
- ******** Here i starts from 1 not 0*******
+ ******** Here i starts from 0 not 1*******
  *
- * Parent Node: |i/2|
- * Left Node: 2*i
- * Right Node: 2*i + 1
+ * Parent Node: |(i-1)/2|
+ * Left Node: 2*i + 1
+ * Right Node: 2*i + 2
  */
 
 void printHeap(Heap_node_t *heap)
@@ -75,16 +75,16 @@ Ret_type_t insertToHeap(Heap_node_t *heap, Heap_t data)
 	heap->size++;
 
 	int temp = 0;
-	int i = heap->size;
+	int i = heap->size-1;
 	// Arrange the element
-	while(i > 1)
+	while(i > 0)
 	{
-		temp = (int)(i / 2);
-		if(heap->array_adr[temp-1] > heap->array_adr[i-1])
+		temp = (int)((i-1) / 2);
+		if(heap->array_adr[temp] > heap->array_adr[i])
 		{
-			heap->array_adr[temp-1] ^= heap->array_adr[i-1];
-			heap->array_adr[i-1] ^= heap->array_adr[temp-1];
-			heap->array_adr[temp-1] ^= heap->array_adr[i-1];
+			heap->array_adr[temp] ^= heap->array_adr[i];
+			heap->array_adr[i] ^= heap->array_adr[temp];
+			heap->array_adr[temp] ^= heap->array_adr[i];
 		}
 		else
 			break;
@@ -115,45 +115,45 @@ Ret_type_t deleteFromHeap(Heap_node_t *heap)
 	heap->array_adr[0] = heap->array_adr[heap->size - 1];
 	heap->size--;
 
-	int i =1;
+	int i =0;
 
-	while(heap->size >= i)
+	while(i < heap->size)
 	{
-		if(((2*i) > heap->size) && ((2*i -1) > heap->size))
+		if(((2*i + 1) > (heap->size - 1)) && ((2*i + 2) > (heap->size - 1)))
 		{
 			break;
 		}
 
-		if((2*i) > heap->size)
+		if((2*i + 2) > (heap->size - 1))
 		{
-			if(heap->array_adr[i-1] > heap->array_adr[2*i-1])
+			if(heap->array_adr[i] > heap->array_adr[2*i + 1])
 			{
-				heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
-				heap->array_adr[2*i-1] ^= heap->array_adr[i-1];
-				heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
+				heap->array_adr[i] ^= heap->array_adr[2*i + 1];
+				heap->array_adr[2*i + 1] ^= heap->array_adr[i];
+				heap->array_adr[i] ^= heap->array_adr[2*i + 1];
 			}
 			break;
 		}
 
-		if((heap->array_adr[i-1] <= heap->array_adr[2*i-1]) &&
-				(heap->array_adr[i-1] <= heap->array_adr[2*i]))
+		if((heap->array_adr[i] <= heap->array_adr[2*i + 1]) &&
+				(heap->array_adr[i] <= heap->array_adr[2*i + 2]))
 		{
 			break;
 		}
 
-		if(heap->array_adr[2*i] > heap->array_adr[2*i-1])
+		if(heap->array_adr[2*i + 2] > heap->array_adr[2*i + 1])
 		{
-			heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
-			heap->array_adr[2*i-1] ^= heap->array_adr[i-1];
-			heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
-			i = 2*i;
+			heap->array_adr[i] ^= heap->array_adr[2*i + 1];
+			heap->array_adr[2*i + 1] ^= heap->array_adr[i];
+			heap->array_adr[i] ^= heap->array_adr[2*i + 1];
+			i = 2*i + 1;
 		}
 		else
 		{
-			heap->array_adr[i-1] ^= heap->array_adr[2*i];
-			heap->array_adr[2*i] ^= heap->array_adr[i-1];
-			heap->array_adr[i-1] ^= heap->array_adr[2*i];
-			i = 2 * i +1;
+			heap->array_adr[i] ^= heap->array_adr[2*i + 2];
+			heap->array_adr[2*i + 2] ^= heap->array_adr[i];
+			heap->array_adr[i] ^= heap->array_adr[2*i + 2];
+			i = 2*i + 2;
 		}
 	}
 

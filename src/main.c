@@ -173,10 +173,6 @@ int main() {
 	insertToHeap(&heap_struct, 6);
 	insertToHeap(&heap_struct, 8);
 	insertToHeap(&heap_struct, 7);
-	deleteFromHeap(&heap_struct);
-	printHeap(&heap_struct);
-	deleteFromHeap(&heap_struct);
-	printHeap(&heap_struct);
 	insertToHeap(&heap_struct, 9);
 	insertToHeap(&heap_struct, 10);
 	insertToHeap(&heap_struct, 5);
