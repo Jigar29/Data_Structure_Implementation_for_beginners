@@ -28,7 +28,7 @@ typedef struct{
 
 typedef struct{
 	Heap_t heap_max_size;
-	Heap_t current_pos;
+	Heap_t size;
 	Heap_t *array_adr;
 }Heap_node_t;
 

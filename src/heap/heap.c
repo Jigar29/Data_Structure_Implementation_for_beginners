@@ -7,136 +7,153 @@
 
 #include "heap.h"
 
+/***************Formulas*******************
+ ******** Here i starts from 1 not 0*******
+ *
+ * Parent Node: |i/2|
+ * Left Node: 2*i
+ * Right Node: 2*i + 1
+ */
+
 void printHeap(Heap_node_t *heap)
 {
-	Heap_t heap_size = getHeapSize(heap);
+	if(!heap)
+		return;
 
-	for(int i=0; i<heap_size;i++)
+	printf("\n");
+	if(heap->size == 0)
+	{
+		printf("Heap is empty");
+		return;
+	}
+
+	for(int i=0; i<heap->size; i++)
 	{
 		printf("%d, ", heap->array_adr[i]);
 	}
-	printf("\n");
 }
 
 Heap_t getHeapSize(Heap_node_t *heap)
 {
-	if(heap->current_pos == -1)
-	{
-		return 0;
-	}
-	else
-		return (heap->current_pos + 1);
+	return heap->size;
 }
 
 Ret_type_t isHeapFull(Heap_node_t *heap)
 {
-	return (getHeapSize(heap) == heap->heap_max_size)?true:false;
+	return (heap->size == heap->heap_max_size) ? true : false;
 }
 
 Ret_type_t isHeapEmpty(Heap_node_t *heap)
 {
-	return (getHeapSize(heap) == 0)?true:false;
+	return (heap->size) ? false : true;
 }
 
 Heap_t getMinNum(Heap_node_t *heap)
 {
-	if(isHeapEmpty(heap) == true)
-	{
-		printf("The Heap is empty\n");
-		return -65556;
-	}
-
 	return heap->array_adr[0];
 }
 
 Ret_type_t insertToHeap(Heap_node_t *heap, Heap_t data)
 {
+	if(!heap)
+		return exit_with_abruption;
+
 	if(isHeapFull(heap) == true)
-		return exit_with_failure;
-
-	//Adding value to the last of the element
-	heap->current_pos += 1;
-	heap->array_adr[heap->current_pos] = data;
-
-	int i=heap->current_pos;
-	Heap_t temp = 0, temp_addr = 0;
-	while(i > 0)
 	{
-		if(i %2 == 0)
+		printf("Heap is full.");
+		return exit_with_failure;
+	}
+
+	if(isHeapEmpty(heap) == true)
+	{
+		heap->array_adr[0] = data;
+		heap->size++;
+		return exit_with_sucsess;
+	}
+
+	heap->array_adr[heap->size] = data;
+	heap->size++;
+
+	int temp = 0;
+	int i = heap->size;
+	// Arrange the element
+	while(i > 1)
+	{
+		temp = (int)(i / 2);
+		if(heap->array_adr[temp-1] > heap->array_adr[i-1])
 		{
-			temp_addr = (int) ((i -2)/2);
-			if(heap->array_adr[temp_addr] > heap->array_adr[i])
-			{
-				temp = heap->array_adr[temp_addr];
-				heap->array_adr[temp_addr] = heap->array_adr[i];
-				heap->array_adr[i] = temp;
-			}
-			i = temp_addr;
+			heap->array_adr[temp-1] ^= heap->array_adr[i-1];
+			heap->array_adr[i-1] ^= heap->array_adr[temp-1];
+			heap->array_adr[temp-1] ^= heap->array_adr[i-1];
 		}
 		else
-		{
-			temp_addr = (i -1)/2;
-			if(heap->array_adr[temp_addr] > heap->array_adr[i])
-			{
-				temp = heap->array_adr[temp_addr];
-				heap->array_adr[temp_addr] = heap->array_adr[i];
-				heap->array_adr[i] = temp;
-			}
-			i = temp_addr;
-		}
+			break;
+
+		i = temp;
 	}
+
 	return exit_with_sucsess;
 }
 
 Ret_type_t deleteFromHeap(Heap_node_t *heap)
 {
+	// only one node - done
+	// only one child node - done
+	// no child  node(2 elements) - done
+	// root is min after replacement - done
+	// null heap - done
+	// empty heap - done
+	if(!heap)
+		return exit_with_abruption;
+
 	if(isHeapEmpty(heap) == true)
 	{
-		printf("The Heap is empty, there is nothing to delete\n");
+		printf("Heap is empty.\n");
 		return exit_with_failure;
 	}
 
-	heap->array_adr[0] = heap->array_adr[heap->current_pos];
-	heap->current_pos -=1;
+	heap->array_adr[0] = heap->array_adr[heap->size - 1];
+	heap->size--;
 
-	int i=0;
-	Heap_t temp = 0, temp_addr = 0;
-	while((2*i + 1 <= heap->current_pos) || (2*i + 2 <= heap->current_pos))
+	int i =1;
+
+	while(heap->size >= i)
 	{
-		if((2*i + 2) > heap->current_pos)
+		if(((2*i) > heap->size) && ((2*i -1) > heap->size))
 		{
-			temp_addr = 2*i + 1;
-			if(heap->array_adr[temp_addr] < heap->array_adr[i])
+			break;
+		}
+
+		if((2*i) > heap->size)
+		{
+			if(heap->array_adr[i-1] > heap->array_adr[2*i-1])
 			{
-				temp = heap->array_adr[temp_addr];
-				heap->array_adr[temp_addr] = heap->array_adr[i];
-				heap->array_adr[i] = temp;
+				heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
+				heap->array_adr[2*i-1] ^= heap->array_adr[i-1];
+				heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
 			}
-			i = temp_addr;
+			break;
+		}
+
+		if((heap->array_adr[i-1] <= heap->array_adr[2*i-1]) &&
+				(heap->array_adr[i-1] <= heap->array_adr[2*i]))
+		{
+			break;
+		}
+
+		if(heap->array_adr[2*i] > heap->array_adr[2*i-1])
+		{
+			heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
+			heap->array_adr[2*i-1] ^= heap->array_adr[i-1];
+			heap->array_adr[i-1] ^= heap->array_adr[2*i-1];
+			i = 2*i;
 		}
 		else
 		{
-			temp_addr = 2*i + 1;
-			if(heap->array_adr[temp_addr] > heap->array_adr[temp_addr+1])
-			{
-				if(heap->array_adr[temp_addr +1] < heap->array_adr[i])
-				{
-					temp = heap->array_adr[temp_addr+1];
-					heap->array_adr[temp_addr+1] = heap->array_adr[i];
-					heap->array_adr[i] = temp;
-				}
-				i = temp_addr+1;
-			}
-			else
-			{
-				if(heap->array_adr[temp_addr] < heap->array_adr[i])
-				{
-					temp = heap->array_adr[temp_addr];
-					heap->array_adr[temp_addr] = heap->array_adr[i];
-					heap->array_adr[i] = temp;
-				}
-				i =temp_addr;
-			}
+			heap->array_adr[i-1] ^= heap->array_adr[2*i];
+			heap->array_adr[2*i] ^= heap->array_adr[i-1];
+			heap->array_adr[i-1] ^= heap->array_adr[2*i];
+			i = 2 * i +1;
 		}
 	}
 

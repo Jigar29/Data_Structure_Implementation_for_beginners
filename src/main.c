@@ -11,11 +11,11 @@
 #include "graph.h"
 
 //#define binary_tree 1
-//#define heap 1
+#define heap 1
 //#define queue 1
 //#define stack 1
 //#define linkedlist 1
-#define circular_queue 1
+//#define circular_queue 1
 //#define priority_queue 1
 //#define graph 1
 
@@ -167,12 +167,16 @@ int main() {
 	printf("\nFirst element is = %d", getFrontElement(&queue));
 
 #elif heap
-	Heap_t array[10] = {-1};
-	Heap_node_t heap_struct = {10, -1, &array[0]};
+	Heap_t array[10] = {0};
+	Heap_node_t heap_struct = {10, 0, &array[0]};
 
 	insertToHeap(&heap_struct, 6);
-	insertToHeap(&heap_struct, 7);
 	insertToHeap(&heap_struct, 8);
+	insertToHeap(&heap_struct, 7);
+	deleteFromHeap(&heap_struct);
+	printHeap(&heap_struct);
+	deleteFromHeap(&heap_struct);
+	printHeap(&heap_struct);
 	insertToHeap(&heap_struct, 9);
 	insertToHeap(&heap_struct, 10);
 	insertToHeap(&heap_struct, 5);
