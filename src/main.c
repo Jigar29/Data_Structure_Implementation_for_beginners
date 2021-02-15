@@ -11,12 +11,12 @@
 #include "graph.h"
 
 //#define binary_tree 1
-#define heap 1
+//#define heap 1
 //#define queue 1
 //#define stack 1
 //#define linkedlist 1
 //#define circular_queue 1
-//#define priority_queue 1
+#define priority_queue 1
 //#define graph 1
 
 int main() {
@@ -182,11 +182,15 @@ int main() {
 
 #elif priority_queue
 	Priority_queue_data_t data[10];
-	Priority_queue_node_t pq = {10, -1, &data[0]};
+	Priority_queue_node_t pq = {10, 0, &data[0]};
 
-	insertToPriorityQueue(&pq, 4, 4);
 	insertToPriorityQueue(&pq, 1, 1);
+	insertToPriorityQueue(&pq, 4, 4);
 	insertToPriorityQueue(&pq, 2, 2);
+
+	insertToPriorityQueue(&pq, 5, 5);
+
+	insertToPriorityQueue(&pq, 0, 0);
 
 	deleteFromPriorityQueue(&pq);
 	printPriorityQueue(&pq);

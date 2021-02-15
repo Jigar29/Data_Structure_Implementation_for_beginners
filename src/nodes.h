@@ -39,7 +39,7 @@ typedef struct{
 
 typedef struct{
 	Priority_queue_t priority_queue_max_size;
-	Priority_queue_t current_pos;
+	Priority_queue_t size;
 	Priority_queue_data_t *data;
 }Priority_queue_node_t;
 
