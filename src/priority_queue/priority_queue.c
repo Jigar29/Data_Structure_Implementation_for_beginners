@@ -147,7 +147,7 @@ Ret_type_t deleteFromPriorityQueue(Priority_queue_node_t *pq)
 		if((pq->data[i].priority <= pq->data[2*i + 1].priority) && (pq->data[i].priority <= pq->data[2*i+2].priority))
 			break;
 
-		if(pq->data[2*i + 1].priority <= pq->data[2*i + 2].priority)
+		if((pq->data[i].priority - pq->data[2*i + 1].priority) >= (pq->data[i].priority - pq->data[2*i + 2].priority))
 		{
 			pq->data[i].priority ^= pq->data[2*i + 1].priority;
 			pq->data[2*i + 1].priority ^= pq->data[i].priority;

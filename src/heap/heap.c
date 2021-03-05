@@ -64,13 +64,6 @@ Ret_type_t insertToHeap(Heap_node_t *heap, Heap_t data)
 		return exit_with_failure;
 	}
 
-	if(isHeapEmpty(heap) == true)
-	{
-		heap->array_adr[0] = data;
-		heap->size++;
-		return exit_with_sucsess;
-	}
-
 	heap->array_adr[heap->size] = data;
 	heap->size++;
 
@@ -141,7 +134,8 @@ Ret_type_t deleteFromHeap(Heap_node_t *heap)
 			break;
 		}
 
-		if(heap->array_adr[2*i + 2] > heap->array_adr[2*i + 1])
+		if((heap->array_adr[i] - heap->array_adr[2*i + 1]) >=
+				(heap->array_adr[i] - heap->array_adr[2*i + 2]))
 		{
 			heap->array_adr[i] ^= heap->array_adr[2*i + 1];
 			heap->array_adr[2*i + 1] ^= heap->array_adr[i];
